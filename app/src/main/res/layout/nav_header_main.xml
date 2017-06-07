@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/nav_bar_header_bg"
         android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:scaleType="centerCrop" app:srcCompat="@drawable/side_nav_bar"/>
+        android:scaleType="centerCrop" app:srcCompat="@drawable/side_nav_bar_img"/>
     <ImageView
         android:id="@+id/user_ava"
         android:layout_width="64dp"
@@ -32,7 +32,7 @@
         android:paddingStart="8dp" android:text="Lv.2" android:textColor="@android:color/white"
         android:textStyle="bold"/>
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/user_name_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_level_nav_bar"

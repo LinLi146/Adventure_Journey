@@ -3,6 +3,9 @@ package com.example.caoziyu.adventure_journey;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,17 +17,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
+    private FragmentTransaction myFragmentTransaction;
+    private Fragment homeFragment, missionFragment;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -44,6 +54,14 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        toolbar.setTitle("UserName");
+//        toolbar.setBackground(getDrawable(android.R.color.transparent));
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View navView = inflater.inflate(R.layout.nav_header_main, null);
+        TextView userName = (TextView) navView.findViewById(R.id.user_name_nav_bar);
+        TextView userLevel = (TextView) navView.findViewById(R.id.user_level_nav_bar);
+        userName.setText("UserName");
+        userLevel.setText("Lv." + "2");
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -51,6 +69,19 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        myFragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (homeFragment == null){
+            homeFragment = new HomeFragment();
+            myFragmentTransaction.add(R.id.main_content,homeFragment);
+            myFragmentTransaction.commit();
+        }
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
     }
 
     @Override
@@ -95,15 +126,36 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item)
     {
+        myFragmentTransaction = getSupportFragmentManager().beginTransaction();
+        hideFragment(myFragmentTransaction);
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home)
         {
-            // Handle the camera action
-        } else if (id == R.id.nav_missions)
+            if (homeFragment == null)
+            {
+                homeFragment = new HomeFragment();
+                myFragmentTransaction.add(R.id.main_content, homeFragment);
+            }
+            else
+            {
+                myFragmentTransaction.show(homeFragment);
+            }
+//            toolbar.setBackground(getDrawable(android.R.color.transparent));
+        }
+        else if (id == R.id.nav_missions)
         {
-
+            if (missionFragment == null)
+            {
+                missionFragment = new MissionFragment();
+                myFragmentTransaction.add(R.id.main_content, missionFragment);
+            }
+            else
+            {
+                myFragmentTransaction.show(missionFragment);
+            }
+//            toolbar.setBackground(getDrawable(R.color.colorPrimary));
         } else if (id == R.id.nav_logs)
         {
 
@@ -114,6 +166,18 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+        myFragmentTransaction.commit();
         return true;
+    }
+
+    private void hideFragment(FragmentTransaction myFragmentTransaction)
+    {
+        if (homeFragment != null){
+            myFragmentTransaction.hide(homeFragment);
+        }
+        if (missionFragment != null){
+            myFragmentTransaction.hide(missionFragment);
+        }
     }
 }

@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
     private FragmentTransaction myFragmentTransaction;
-    private Fragment homeFragment, missionFragment;
+    private Fragment homeFragment, missionModeFragment;
     private Toolbar toolbar;
 
     @Override
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        toolbar.setTitle("UserName");
+        toolbar.setTitle("UserName" + "'s Journey");
 //        toolbar.setBackground(getDrawable(android.R.color.transparent));
         LayoutInflater inflater = LayoutInflater.from(this);
         View navView = inflater.inflate(R.layout.nav_header_main, null);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         userName.setText("UserName");
         userLevel.setText("Lv." + "2");
         Window window = getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
@@ -74,6 +74,12 @@ public class MainActivity extends AppCompatActivity
         if (homeFragment == null){
             homeFragment = new HomeFragment();
             myFragmentTransaction.add(R.id.main_content,homeFragment);
+            myFragmentTransaction.commit();
+        }
+        else
+        {
+            hideFragment(myFragmentTransaction);
+            myFragmentTransaction.show(homeFragment);
             myFragmentTransaction.commit();
         }
     }
@@ -146,14 +152,14 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_missions)
         {
-            if (missionFragment == null)
+            if (missionModeFragment == null)
             {
-                missionFragment = new MissionFragment();
-                myFragmentTransaction.add(R.id.main_content, missionFragment);
+                missionModeFragment = new MissionModeFragment();
+                myFragmentTransaction.add(R.id.main_content, missionModeFragment);
             }
             else
             {
-                myFragmentTransaction.show(missionFragment);
+                myFragmentTransaction.show(missionModeFragment);
             }
 //            toolbar.setBackground(getDrawable(R.color.colorPrimary));
         } else if (id == R.id.nav_logs)
@@ -176,8 +182,8 @@ public class MainActivity extends AppCompatActivity
         if (homeFragment != null){
             myFragmentTransaction.hide(homeFragment);
         }
-        if (missionFragment != null){
-            myFragmentTransaction.hide(missionFragment);
+        if (missionModeFragment != null){
+            myFragmentTransaction.hide(missionModeFragment);
         }
     }
 }

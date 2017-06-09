@@ -1,10 +1,12 @@
 package com.example.caoziyu.adventure_journey;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,6 +21,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.caoziyu.adventure_journey.db.MissionLab;
+import com.example.caoziyu.adventure_journey.db.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity
@@ -27,11 +34,14 @@ public class MainActivity extends AppCompatActivity
     private FragmentTransaction myFragmentTransaction;
     private Fragment homeFragment, missionModeFragment;
     private Toolbar toolbar;
+    private Context mcontext=this;
+    private List<UserData> userData=new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -53,15 +63,15 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-        toolbar.setTitle("UserName" + "'s Journey");
+        initUserData();
+        toolbar.setTitle(userData.get(0).getUserName() + "'s Journey");
 //        toolbar.setBackground(getDrawable(android.R.color.transparent));
         LayoutInflater inflater = LayoutInflater.from(this);
         View navView = inflater.inflate(R.layout.nav_header_main, null);
         TextView userName = (TextView) navView.findViewById(R.id.user_name_nav_bar);
         TextView userLevel = (TextView) navView.findViewById(R.id.user_level_nav_bar);
-        userName.setText("UserName");
-        userLevel.setText("Lv." + "2");
+        userName.setText(userData.get(0).getUserName());
+        userLevel.setText("Lv." + userData.get(0).getLevel());
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -82,7 +92,24 @@ public class MainActivity extends AppCompatActivity
             myFragmentTransaction.show(homeFragment);
             myFragmentTransaction.commit();
         }
+
+
+
+
     }
+
+    public void initUserData(){//初始化用户信息
+        Log.d("initUserData","Start Initiation");
+        MissionLab missionLab=MissionLab.get(mcontext);
+        if(missionLab.getUserdatas().size()!=0){}
+        else {
+            UserData ud=new UserData();
+            missionLab.addUserdata(ud);
+        }
+        userData=missionLab.getUserdatas();
+    }
+
+
 
     @Override
     public void onResume()

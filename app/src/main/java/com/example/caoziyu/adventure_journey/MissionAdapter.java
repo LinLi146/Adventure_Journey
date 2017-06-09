@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.caoziyu.adventure_journey.db.Mission;
+
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
 
 public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHolder>
 {
-    private List<Integer> mMissionsList;
+    private List<Mission> mMissionsList;
 
     static class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -30,7 +32,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
         }
     }
 
-    public MissionAdapter(List<Integer> mList)
+    public MissionAdapter(List<Mission> mList)
     {
         mMissionsList = mList;
     }
@@ -46,14 +48,18 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
     {
-        Integer num = mMissionsList.get(position);
-        holder.missionName.setText("Mission " + num);
-        holder.missionDescription.setText("Description " + num);
+        Mission mission=mMissionsList.get(position);
+        holder.missionName.setText("Mission " + mission.getSmid()+" "+mission.getTitle());
+        holder.missionDescription.setText(mission.getDecription());//description
     }
 
     @Override
     public int getItemCount()
     {
         return mMissionsList.size();
+    }
+
+    public void setmMissionsList(List<Mission> missions){
+        mMissionsList=missions;
     }
 }

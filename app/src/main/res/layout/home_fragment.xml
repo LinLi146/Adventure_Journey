@@ -14,34 +14,58 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:baselineAligned="true"
             android:orientation="horizontal"
+            android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:paddingStart="@dimen/activity_horizontal_margin">
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.Material.Light.ProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" android:layout_weight="1"
+                android:indeterminate="false"
+                android:indeterminateTint="@android:color/black" android:paddingEnd="4dp"
+                android:paddingStart="0dp"
+                android:progressTint="@color/colorAccent"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" android:orientation="vertical">
+                android:layout_weight="2" android:orientation="vertical" android:paddingEnd="4dp"
+                android:paddingStart="0dp">
                 <TextView
                     android:id="@+id/exp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif" android:text="EXP"
+                    android:textColor="@android:color/black" android:textSize="14sp"
                     android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/exp_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="5637" android:textSize="40sp"/>
+                    android:text="5637"
+                    android:textSize="40sp"/>
             </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="@android:style/Widget.Material.Light.ProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" android:layout_weight="1"
+                android:indeterminate="false"
+                android:indeterminateTint="@android:color/black" android:paddingEnd="4dp"
+                android:paddingStart="0dp"
+                android:progressTint="@color/colorAccent"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" android:orientation="vertical">
+                android:layout_weight="2" android:orientation="vertical">
                 <TextView
                     android:id="@+id/schedule"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif" android:text="SCHEDULE"
+                    android:textColor="@android:color/black" android:textSize="14sp"
                     android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/schedule_value"
@@ -86,12 +110,13 @@
                     android:layout_below="@+id/home_now_mission_img"
                     android:orientation="vertical"
                     android:paddingEnd="4dp"
-                    android:paddingTop="@dimen/activity_vertical_margin">
+                    android:paddingStart="0dp" android:paddingTop="@dimen/activity_vertical_margin">
                     <TextView
                         android:id="@+id/main_mission"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true" android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:text="Mission 4" android:textColor="@android:color/black"
                         android:textSize="24sp"/>
                     <Button

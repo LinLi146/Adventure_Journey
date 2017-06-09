@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -109,7 +112,10 @@ public class MainActivity extends AppCompatActivity
         userData=missionLab.getUserdatas();
     }
 
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     @Override
     public void onResume()

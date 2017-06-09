@@ -5,4 +5,5 @@
     <color name="colorAccent">#42a5f5</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="materialTint">#3e000000</color>
+    <color name="textDescribe">#737373</color>
 </resources>

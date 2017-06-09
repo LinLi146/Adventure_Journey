@@ -3,14 +3,14 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="8dp"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:baselineAligned="true"
             android:orientation="horizontal"
@@ -18,15 +18,6 @@
             android:paddingEnd="@dimen/activity_horizontal_margin"
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="@android:style/Widget.Material.Light.ProgressBar"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" android:layout_weight="1"
-                android:indeterminate="false"
-                android:indeterminateTint="@android:color/black" android:paddingEnd="4dp"
-                android:paddingStart="0dp"
-                android:progressTint="@color/colorAccent"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -34,54 +25,81 @@
                 android:paddingStart="0dp">
                 <TextView
                     android:id="@+id/exp"
+                    fontPath="fonts/AvenirLTStd-Black.otf"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif" android:text="EXP"
-                    android:textColor="@android:color/black" android:textSize="14sp"
-                    android:textStyle="bold"/>
+                    android:layout_height="wrap_content" android:fontFamily="sans-serif"
+                    android:text="EXP" android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" tools:ignore="MissingPrefix"/>
                 <TextView
                     android:id="@+id/exp_value"
+                    fontPath="fonts/AvenirNextLTPro-UltLtCn.otf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="5637"
-                    android:textSize="40sp"/>
+                    android:gravity="bottom"
+                    android:text="563" android:textColor="@color/cardview_dark_background"
+                    android:textSize="48sp"
+                    tools:ignore="MissingPrefix"/>
             </LinearLayout>
-            <ProgressBar
-                android:id="@+id/progressBar2"
-                style="@android:style/Widget.Material.Light.ProgressBar"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" android:layout_weight="1"
-                android:indeterminate="false"
-                android:indeterminateTint="@android:color/black" android:paddingEnd="4dp"
-                android:paddingStart="0dp"
-                android:progressTint="@color/colorAccent"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2" android:orientation="vertical">
+                android:layout_weight="1"
+                android:gravity="center_horizontal" android:orientation="vertical">
+                <TextView
+                    android:id="@+id/level"
+                    fontPath="fonts/AvenirLTStd-Black.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif" android:text="LEVEL"
+                    android:textColor="@android:color/black" android:textSize="14sp"
+                    android:textStyle="bold" tools:ignore="MissingPrefix"/>
+                <com.eralp.circleprogressview.CircleProgressView
+                    android:id="@+id/main_circle_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    app:cpv_background_circle_color="@color/cardview_shadow_start_color"
+                    app:cpv_background_circle_width="2dp"
+                    app:cpv_circle_color="@android:color/black" app:cpv_circle_width="2dp"
+                    app:cpv_text_color="@android:color/black" app:cpv_text_size="14"
+                    app:cpv_text_suffix="%"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" android:gravity="end" android:orientation="vertical">
                 <TextView
                     android:id="@+id/schedule"
+                    fontPath="fonts/AvenirLTStd-Black.otf"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif" android:text="SCHEDULE"
-                    android:textColor="@android:color/black" android:textSize="14sp"
-                    android:textStyle="bold"/>
+                    android:layout_height="wrap_content" android:fontFamily="sans-serif"
+                    android:text="SCHEDULE" android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" tools:ignore="MissingPrefix"/>
                 <TextView
                     android:id="@+id/schedule_value"
+                    fontPath="fonts/AvenirNextLTPro-UltLtCn.otf"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed" android:text="3/21"
-                    android:textSize="40sp"/>
+                    android:layout_height="wrap_content" android:fontFamily="sans-serif-condensed"
+                    android:gravity="bottom"
+                    android:text="3/21" android:textColor="@color/cardview_dark_background" android:textSize="48sp"
+                    tools:ignore="MissingPrefix"/>
             </LinearLayout>
         </LinearLayout>
         <android.support.v7.widget.CardView
+            android:id="@+id/main_card_now"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            app:cardCornerRadius="4dp" app:cardElevation="4dp">
+            android:layout_marginStart="@dimen/activity_horizontal_margin" app:cardCornerRadius="4dp" app:cardElevation="4dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:orientation="vertical">
@@ -93,17 +111,25 @@
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/deer_in_the_alley"/>
-                <TextView
-                    android:id="@+id/main_now_at"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
+                    android:layout_height="match_parent"
                     android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:drawablePadding="4dp"
-                    android:drawableStart="@drawable/ic_directions_run"
-                    android:text="Now At" android:textColor="@android:color/white"
-                    android:textStyle="bold"/>
+                    android:gravity="center_vertical" android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="4dp" app:srcCompat="@drawable/ic_directions_run"/>
+                    <TextView
+                        android:id="@+id/main_now_at"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Now At"
+                        android:textColor="@android:color/white" android:textStyle="bold"/>
+                </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -122,12 +148,13 @@
                     <Button
                         android:id="@+id/main_continue"
                         style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+                        fontPath="fonts/AvenirNextLTPro-Bold.otf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_below="@+id/main_mission"
                         android:layout_marginStart="4dp"
-                        android:text="Continue" android:textStyle="bold"/>
+                        android:text="Continue" tools:ignore="MissingPrefix"/>
                     <Button
                         android:id="@+id/main_inspect"
                         style="@android:style/Widget.Material.Light.Button.Borderless"
@@ -139,26 +166,32 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
+            android:id="@+id/main_card_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            app:cardCornerRadius="4dp" app:cardElevation="4dp">
+            android:layout_marginStart="@dimen/activity_horizontal_margin" app:cardCornerRadius="4dp" app:cardElevation="4dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/main_news"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:drawablePadding="4dp" android:drawableStart="@drawable/ic_news"
-                    android:text="Adventure News"/>
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:gravity="center_vertical" android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="20dp" android:layout_height="20dp"
+                        android:layout_marginEnd="4dp" app:srcCompat="@drawable/ic_news"/>
+                    <TextView
+                        android:id="@+id/main_news"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Adventure News"
+                        android:textColor="@color/textDescribe"/>
+                </LinearLayout>
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="match_parent" android:layout_height="200dp"
@@ -169,7 +202,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:text="New Chapter COMING SOON!"
+                    android:lineSpacingExtra="2dp"
+                    android:text="New Chapter COMING SOON!" android:textColor="@android:color/black"
                     android:textSize="24sp"/>
             </LinearLayout>
         </android.support.v7.widget.CardView>

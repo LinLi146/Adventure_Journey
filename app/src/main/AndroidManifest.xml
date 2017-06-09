@@ -3,12 +3,14 @@
           package="com.example.caoziyu.adventure_journey">
 
     <application
+        android:name=".AJApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:resizeableActivity="false">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -20,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MissionSelectActivity">
+        <activity android:name=".MissionSelectActivity"
+                  android:screenOrientation="portrait">
         </activity>
     </application>
 

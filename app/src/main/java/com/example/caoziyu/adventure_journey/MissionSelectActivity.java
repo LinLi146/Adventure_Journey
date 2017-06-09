@@ -16,6 +16,7 @@ import android.view.WindowManager;
 
 import com.example.caoziyu.adventure_journey.db.Mission;
 import com.example.caoziyu.adventure_journey.db.MissionLab;
+import com.example.caoziyu.adventure_journey.view.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,10 +27,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MissionSelectActivity extends AppCompatActivity
 {
-
-
-
-
     private Context mcontext=this;
     private List<Mission> mMissionsList = new ArrayList<>();
     private Toolbar toolbar;
@@ -51,6 +48,7 @@ public class MissionSelectActivity extends AppCompatActivity
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.mission_select_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         MissionAdapter adapter = new MissionAdapter(mMissionsList);
         recyclerView.setAdapter(adapter);
     }

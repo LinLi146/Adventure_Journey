@@ -2,8 +2,6 @@ package com.example.caoziyu.adventure_journey;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -20,6 +18,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.caoziyu.adventure_journey.db.MissionLab;
 import com.example.caoziyu.adventure_journey.db.UserData;
@@ -34,6 +33,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
+    private long exitTime = 0;
     private FragmentTransaction myFragmentTransaction;
     private Fragment homeFragment, missionModeFragment;
     private Toolbar toolbar;
@@ -50,16 +50,16 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view)
+//            {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,13 +68,8 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         initUserData();
         toolbar.setTitle(userData.get(0).getUserName() + "'s Journey");
-//        toolbar.setBackground(getDrawable(android.R.color.transparent));
         LayoutInflater inflater = LayoutInflater.from(this);
-        View navView = inflater.inflate(R.layout.nav_header_main, null);
-        TextView userName = (TextView) navView.findViewById(R.id.user_name_nav_bar);
-        TextView userLevel = (TextView) navView.findViewById(R.id.user_level_nav_bar);
-        userName.setText(userData.get(0).getUserName());
-        userLevel.setText("Lv." + userData.get(0).getLevel());
+
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -82,7 +77,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        View navView = navigationView.getHeaderView(0);
+        TextView userName = (TextView) navView.findViewById(R.id.user_name_nav_bar);
+        TextView userLevel = (TextView) navView.findViewById(R.id.user_level_nav_bar);
+        userName.setText(userData.get(0).getUserName());
+        userLevel.setText("Lv." + userData.get(0).getLevel());
         myFragmentTransaction = getSupportFragmentManager().beginTransaction();
         if (homeFragment == null){
             homeFragment = new HomeFragment();
@@ -132,7 +131,14 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else
         {
-            super.onBackPressed();
+            if(System.currentTimeMillis() - exitTime > 2000) {
+                Toast.makeText(this, "Press back once more to exit.", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+                android.os.Process.killProcess(android.os.Process.myPid());
+            }
         }
     }
 
@@ -181,7 +187,6 @@ public class MainActivity extends AppCompatActivity
             {
                 myFragmentTransaction.show(homeFragment);
             }
-//            toolbar.setBackground(getDrawable(android.R.color.transparent));
         }
         else if (id == R.id.nav_missions)
         {
@@ -194,7 +199,6 @@ public class MainActivity extends AppCompatActivity
             {
                 myFragmentTransaction.show(missionModeFragment);
             }
-//            toolbar.setBackground(getDrawable(R.color.colorPrimary));
         } else if (id == R.id.nav_logs)
         {
 

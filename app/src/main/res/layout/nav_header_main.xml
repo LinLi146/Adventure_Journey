@@ -3,23 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="172dp"
+    android:layout_height="184dp"
     android:orientation="vertical" android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
         android:id="@+id/nav_bar_header_bg"
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:scaleType="centerCrop" app:srcCompat="@drawable/side_nav_bar_img"/>
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/user_ava"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="32dp"
-        android:elevation="24dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon"/>
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cat"
+        app:civ_border_color="#FFFFFF" app:civ_border_width="0.6dp"
+    />
     <TextView
         android:id="@+id/user_level_nav_bar"
         android:layout_width="wrap_content"
@@ -33,13 +35,13 @@
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/user_name_nav_bar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_level_nav_bar"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="8dp"
-        android:text="UserName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:singleLine="true"
+        android:text="UserName" android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </RelativeLayout>

@@ -18,6 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/mission_mode_story"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:foregroundTint="@android:color/black"
             android:gravity="center" android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
@@ -39,6 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/mission_mode_training"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:foregroundTint="@android:color/black"
             android:gravity="center" android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"

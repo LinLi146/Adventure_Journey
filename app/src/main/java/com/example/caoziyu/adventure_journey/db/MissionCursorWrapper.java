@@ -28,6 +28,7 @@ public class MissionCursorWrapper extends CursorWrapper {
 
         Mission mission=new Mission(Integer.parseInt(smidString));
 
+
         mission.setTitle(title);
         mission.setDate(new Date(date));
         mission.setDescription(discript);
@@ -38,11 +39,5 @@ public class MissionCursorWrapper extends CursorWrapper {
 
         return mission;
     }
-
-
-
-
-
-
-
+    
 }
